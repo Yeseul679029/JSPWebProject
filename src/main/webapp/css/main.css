@@ -11,7 +11,7 @@
 .main_con_right{width:305px; float:right; text-align:left;}
 .main_title{padding-bottom:10px; border-bottom:1px solid #d9d7d7; margin-bottom:10px; position:relative;}
 .more_btn{position:absolute; top:5px; right:0px;}
-.login_box{width:238px; height:82px; background:url(../images/login_bg.gif) bottom repeat-x; border:1px solid #f2c6ba;}
+.login_box{width:238px; height:82px;  border:1px solid #f2c6ba; background:url(../images/login_bg.gif) bottom repeat-x;} /*  */
 .login_box table{margin:8px 0px 5px 8px;}
 .login_box p{padding-left:8px;}
 .login_input{border:1px solid #d5dbe3; width:110px;}

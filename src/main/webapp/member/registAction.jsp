@@ -41,10 +41,15 @@ MemberShipDAO dao = new MemberShipDAO(application);
 int result = dao.memberInsert(dto);
 
 if(result == 1){
-	out.print("입력성공");
+	//out.print("입력성공");
+	session.setAttribute("UserId", dto.getId());
+	session.setAttribute("UserName", dto.getName());
+	response.sendRedirect("join02.jsp");
 }
 else{
-	out.print("입력실패");
+	//out.print("입력실패");
+	request.setAttribute("MemberErrMsg", "회원가입에 실패했습니다.");
+	request.getRequestDispatcher("join02.jsp").forward(request, response);
 }
 
 %>

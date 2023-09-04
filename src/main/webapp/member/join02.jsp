@@ -237,6 +237,16 @@ function postOpen(){
 				<p class="join_title"><img src="../images/join_tit03.gif" alt="회원정보입력" /></p>
 				
 				
+				<span style="color: red; font-size: 1.2em;"> 
+			        <%= request.getAttribute("MemberErrMsg") == null ?
+			                "" : request.getAttribute("LoginErrMsg") %>
+			    </span>
+			    
+			    <%
+			    /* session영역에 해당 속성값이 있는지 확인한다. 즉, session영역에
+			    데이터가 없다면 로그아웃 상태이므로 로그인 폼을 웹브라우저에 출력한다. */
+			    if (session.getAttribute("UserId") == null) { 
+			    %>
 				<form name="membership" action="registAction.jsp" method="post" onsubmit="return formValidate(this);">
 					<table cellpadding="0" cellspacing="0" border="0" class="join_box">
 						<colgroup>
@@ -316,9 +326,22 @@ function postOpen(){
 					</table>
 					
 					<!-- 이미지 파일로 submit이 되어야한다. -->
-					<p style="text-align:center; margin-bottom:20px"><a href="join02.jsp"><input type="image" src="../images/btn01.gif" /></a>&nbsp;&nbsp;<a href="#"><img src="../images/btn02.gif" /></a></p>
+					<p style="text-align:center; margin-bottom:20px"><input type="image" src="../images/btn01.gif" />&nbsp;&nbsp;<a href="#"><img src="../images/btn02.gif" /></a></p>
 					
 				</form>
+				
+				<%
+				/* 회원가입 성공했을때  */
+			    } else {  
+			    	//로그인이 된 상태에서는 회원의 이름과 로그아웃 버튼을 출력한다.
+			    %>
+			        <%= session.getAttribute("UserName") %>님 회원가입에 성공하셨습니다.<br />
+			        <a href="login.jsp">[로그인하러가기]</a>
+			    <%
+			    }
+			    %>
+				
+				
 			</div>
 		</div>
 		<%@ include file="../include/quick.jsp" %>
