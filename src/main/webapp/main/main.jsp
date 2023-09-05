@@ -26,36 +26,60 @@
 				<div class="login_box">
 				
 	<%
-	/* session영역에 해당 속성값이 있는지 확인한다. 즉, session영역에
-	데이터가 없다면 로그아웃 상태이므로 로그인 폼을 웹브라우저에 출력한다. */
+	
 	if (session.getAttribute("UserId") == null) { 
 	%>
-					<table cellpadding="0" cellspacing="0" border="0">
-						<colgroup>
-							<col width="45px" />
-							<col width="120px" />
-							<col width="55px" />
-						</colgroup>
-						<tr>
-							<th><img src="../images/login_tit01.gif" alt="아이디" /></th>
-							<td><input type="text" name="" value="" class="login_input" /></td>
-							<td rowspan="2"><input type="image" src="../images/login_btn01.gif" alt="로그인" /></td>
-						</tr>
-						<tr>
-							<th><img src="../images/login_tit02.gif" alt="패스워드" /></th>
-							<td><input type="text" name="" value="" class="login_input" /></td>
-						</tr>
-					</table>
+	<script>
+    /* 로그인 폼의 입력값을 검증하기 위한 함수로 빈값인지를 확인한다. */
+    function validateMForm(form) {
+    	//입력값이 공백인지 확인후 경고창, 포커스이동, 폼값전송 중단처리를 한다.
+        if (!form.userId.value) {
+            alert("아이디를 입력하세요.");
+            form.userId.focus();
+            //여기서 false를 전하는 이유 공부하기 문제가있다면 
+            //submit으로 전송되지않게끔 false를 전달
+            return false;
+        }
+        if (form.userPw.value == "") {
+            alert("패스워드를 입력하세요.");
+            form.userPw.focus();
+            return false;
+        }
+    }
+    </script>
+					<form action="LoginProcess.jsp" method="post" name="loginMFrm" onsubmit="return validateMForm(this);">
+						<table cellpadding="0" cellspacing="0" border="0">
+							<colgroup>
+								<col width="45px" />
+								<col width="120px" />
+								<col width="55px" />
+							</colgroup>
+							<tr>
+								<th><img src="../images/login_tit01.gif" alt="아이디"/></th>
+								<td><input type="text" name="userId" value="" class="login_input" tabindex="1"/></td>
+								<td rowspan="2"><input type="image" src="../images/login_btn01.gif" alt="로그인" tabindex="3"/></td>
+							</tr>
+							<tr>
+								<th><img src="../images/login_tit02.gif" alt="패스워드" /></th>
+								<td><input type="password" name="userPw" value="" class="login_input" tabindex="2"/></td>
+							</tr>
+						</table>
+					</form>
 					<p>
-						<input type="checkbox" name="" value="" /><img src="../images/login_tit03.gif" alt="저장" />
+						<input type="checkbox" name="" value="" /><img src="../images/login_tit03.gif" alt="아이디저장" />
 						<a href="../member/id_pw.jsp"><img src="../images/login_btn02.gif" alt="아이디/패스워드찾기" /></a>
 						<a href="../member/join01.jsp"><img src="../images/login_btn03.gif" alt="회원가입" /></a>
 					</p>
+					<!-- 로그인오류 -->
+					<span style="color: red; font-size: 1.2em; display: inline-block; padding-top: 20px;"> 
+				        <%= request.getAttribute("LoginErrMsg") == null ?
+				                "" : request.getAttribute("LoginErrMsg") %>
+				    </span>
 <%
 } else {
 %>					 
 					<!-- 로그인 후 -->
-					<p style="padding:10px 0px 10px 10px"><span style="font-weight:bold; color:#333;">000님,</span> 반갑습니다.<br />로그인 하셨습니다.</p>
+					<p style="padding:10px 0px 10px 10px"><span style="font-weight:bold; color:#333;"><%= session.getAttribute("UserName") %>님,</span> 반갑습니다.<br />로그인 하셨습니다.</p>
 					<p style="text-align:right; padding-right:10px;">
 						<a href=""><img src="../images/login_btn04.gif" alt="회원정보수정"/></a>
 						<a href="../member/Logout.jsp"><img src="../images/login_btn05.gif" alt="로그아웃"/></a>
