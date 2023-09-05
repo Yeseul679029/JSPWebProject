@@ -62,6 +62,18 @@
   
   
   
+  <!-- 모델2 방식의 게시판을 위한 서블릿 매핑  -->
+   <!-- 목록 -->
+   <!-- <servlet>
+      <servlet-name>MemberIdPW</servlet-name>
+      <servlet-class>membership.IdPwController</servlet-class>
+   </servlet>
+   <servlet-mapping>
+      <servlet-name>MemberIdPW</servlet-name>
+      <url-pattern>/membership/id_pw.do</url-pattern>
+   </servlet-mapping> -->
+  
+  
   
   
   

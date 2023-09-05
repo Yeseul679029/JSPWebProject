@@ -57,13 +57,13 @@
 .login_input01{border:1px solid #dcdcdc; background:#f7f7f7; padding:0px; width:149px; height:19px;}
 .login_btn01{position:absolute; top:83px; left:275px;}
 .idpw_box{float:left;}
-.id_box{float:left; width:358px; height:220px; background:url(../images/member/id_bg.gif) no-repeat; margin-right:40px; position:relative;}
-.id_box ul{position:absolute; top:100px; left:90px;}
+.id_box{float:left; width:358px; height:220px; background:url(../images/member/id_bg.gif) no-repeat; margin-right:40px; position:relative; padding-top: 8px;}
+.id_box ul{position:absolute; top:100px; left:90px; padding-left: 0;}
 .id_box ul li{margin-bottom:10px;}
 .id_btn{position:absolute; top:98px; left:250px;}
 .id_btn02{position:absolute; top:180px; left:217px;}
-.pw_box{float:left; width:358px; height:220px; background:url(../images/member/pw_bg.gif) no-repeat; position:relative;}
-.pw_box ul{position:absolute; top:90px; left:90px;}
+.pw_box{float:left; width:358px; height:220px; background:url(../images/member/pw_bg.gif) no-repeat; position:relative; padding-top: 8px;}
+.pw_box ul{position:absolute; top:90px; left:90px; padding-left: 0;}
 .pw_box ul li{margin-bottom:10px;}
 .pw_btn{position:absolute; top:98px; left:250px;}
 .dot_list{padding-left:10px; margin-bottom:30px;}

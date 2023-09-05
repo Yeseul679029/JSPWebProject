@@ -185,12 +185,44 @@ function focusMove(thisObj, nextName, inputLen){
 //아이디 중복확인 
 function idCheck(fn){
 	
+	
+	console.log('id=',fn.id.value);
+    //아이디는 8~12자로 입력되었는지 검증
+    if(!(fn.id.value.length>=8 && fn.id.value.length<=12)){
+        alert("아이디는 8~12자 사이만 가능합니다.");
+        fn.id.value = '';
+        fn.id.focus();
+        return false;
+    }
+
+    //아이디는 숫자로 시작할 수 없음
+    if(fn.id.value[0].charCodeAt(0)>=48 &&
+    		fn.id.value.charCodeAt(0)<=57){
+        alert('아이디는 숫자로 시작할 수 없습니다.');
+        fn.id.value = '';
+        fn.id.focus();
+        return false;
+    }
+
+    //아이디는 영문+숫자의 조합으로만 사용할 수 있다. 
+    for(var i=0 ; i<fn.id.value.length ; i++){
+        if(!((fn.id.value[i]>='a' && fn.id.value[i]<='z') ||
+            (fn.id.value[i]>='A' && fn.id.value[i]<='Z') ||
+            (fn.id.value[i]>='0' && fn.id.value[i]<='9'))){
+            alert("아이디는 영문 및 숫자의 조합만 가능합니다.");
+            fn.id.value='';
+            fn.id.focus();
+            return false; 
+        }
+    }
+	
 	console.log('id=',fn.id.value);
     if(fn.id.value==''){
         alert("아이디를 입력후 중복확인 해주세요.");
         fn.id.focus();
     }
     else{
+    	
         //아이디 중복확인 창을 띄울때 입력한 아이디를 쿼리스트링으로 
         //넘겨준다. 
         window.open('RegiIdOverlap.jsp?id='+fn.id.value,
@@ -200,7 +232,7 @@ function idCheck(fn){
         fn.id.readOnly = true;
     }
 }
-
+//주소API
 function postOpen(){    
     new daum.Postcode({
         oncomplete: function(data) {
@@ -239,7 +271,7 @@ function postOpen(){
 				
 				<span style="color: red; font-size: 1.2em;"> 
 			        <%= request.getAttribute("MemberErrMsg") == null ?
-			                "" : request.getAttribute("LoginErrMsg") %>
+			                "" : request.getAttribute("MemberErrMsg") %>
 			    </span>
 			    
 			    <%
@@ -338,6 +370,8 @@ function postOpen(){
 			        <%= session.getAttribute("UserName") %>님 회원가입에 성공하셨습니다.<br />
 			        <a href="login.jsp">[로그인하러가기]</a>
 			    <%
+			    session.removeAttribute("UserId");
+			    session.removeAttribute("UserName");
 			    }
 			    %>
 				
