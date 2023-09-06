@@ -24,7 +24,7 @@ MemberShipDTO memberDTO = dao.getMemberId(userName, userEmail);
 dao.close();
 	
 if(memberDTO.getName() != null){
-	//session영역에 회원아이디와 이름을 저장한다.
+	//request영역에 회원아이디와 이름을 저장한다.
 	request.setAttribute("UserName", memberDTO.getName());
 	request.setAttribute("UserId", memberDTO.getId());
 

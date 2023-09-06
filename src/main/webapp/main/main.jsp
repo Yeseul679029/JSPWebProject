@@ -1,3 +1,4 @@
+<%@page import="utils.CookieManager"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -10,6 +11,25 @@
 @import url("../css/main.css");
 @import url("../css/sub.css");
 </style>
+
+<script>
+/* 로그인 폼의 입력값을 검증하기 위한 함수로 빈값인지를 확인한다. */
+function validateForm(form) {
+	//입력값이 공백인지 확인후 경고창, 포커스이동, 폼값전송 중단처리를 한다.
+    if (!form.userId.value) {
+        alert("아이디를 입력하세요.");
+        form.userId.focus();
+        //여기서 false를 전하는 이유 공부하기 문제가있다면 
+        //submit으로 전송되지않게끔 false를 전달
+        return false;
+    }
+    if (form.userPw.value == "") {
+        alert("패스워드를 입력하세요.");
+        form.userPw.focus();
+        return false;
+    }
+}
+</script>
 </head>
 <body>
 <center>
@@ -27,54 +47,48 @@
 				
 	<%
 	
+	//페이지가 실행되면 loginId라는 쿠키를 읽어온다.
+	String loginId = CookieManager.readCookie(request, "loginId");
+
+	//'아이디저장' 체크박스에 체크를 하기위한 변수 생성
+	String cookieCheck = "";
+	if(!loginId.equals("")){
+		/* 앞에서 읽은 쿠키값이 있다면 체크박스에 checked 속성을 부여한다.
+		그러면 체크된 상태로 로드된다. */
+		cookieCheck = "checked";
+	}
+	
+	
 	if (session.getAttribute("UserId") == null) { 
 	%>
-	<script>
-    /* 로그인 폼의 입력값을 검증하기 위한 함수로 빈값인지를 확인한다. */
-    function validateMForm(form) {
-    	//입력값이 공백인지 확인후 경고창, 포커스이동, 폼값전송 중단처리를 한다.
-        if (!form.userId.value) {
-            alert("아이디를 입력하세요.");
-            form.userId.focus();
-            //여기서 false를 전하는 이유 공부하기 문제가있다면 
-            //submit으로 전송되지않게끔 false를 전달
-            return false;
-        }
-        if (form.userPw.value == "") {
-            alert("패스워드를 입력하세요.");
-            form.userPw.focus();
-            return false;
-        }
-    }
-    </script>
-					<form action="LoginProcess.jsp" method="post" name="loginMFrm" onsubmit="return validateMForm(this);">
+	
+					<form action="../member/LoginProcess.jsp" method="post" name="loginFrm" onsubmit="return validateForm(this);">
 						<table cellpadding="0" cellspacing="0" border="0">
 							<colgroup>
-								<col width="45px" />
-								<col width="120px" />
-								<col width="55px" />
+								<col width="45px" /><col width="120px" /><col width="55px" />
 							</colgroup>
 							<tr>
 								<th><img src="../images/login_tit01.gif" alt="아이디"/></th>
-								<td><input type="text" name="userId" value="" class="login_input" tabindex="1"/></td>
+								<td><input type="text" name="user_id" value="<%= loginId %>" class="login_input" tabindex="1"/></td>
 								<td rowspan="2"><input type="image" src="../images/login_btn01.gif" alt="로그인" tabindex="3"/></td>
 							</tr>
 							<tr>
 								<th><img src="../images/login_tit02.gif" alt="패스워드" /></th>
-								<td><input type="password" name="userPw" value="" class="login_input" tabindex="2"/></td>
+								<td><input type="password" name="user_pw" value="" class="login_input" tabindex="2"/></td>
 							</tr>
 						</table>
-					</form>
 					<p>
-						<input type="checkbox" name="" value="" /><img src="../images/login_tit03.gif" alt="아이디저장" />
+						<input type="checkbox" name="save_check" value="Y" <%= cookieCheck %> /><img src="../images/login_tit03.gif" alt="아이디저장" />
 						<a href="../member/id_pw.jsp"><img src="../images/login_btn02.gif" alt="아이디/패스워드찾기" /></a>
 						<a href="../member/join01.jsp"><img src="../images/login_btn03.gif" alt="회원가입" /></a>
 					</p>
+					</form>
+					
 					<!-- 로그인오류 -->
-					<span style="color: red; font-size: 1.2em; display: inline-block; padding-top: 20px;"> 
+					<%-- <span style="color: red; font-size: 1.2em; display: inline-block; padding-top: 20px;"> 
 				        <%= request.getAttribute("LoginErrMsg") == null ?
 				                "" : request.getAttribute("LoginErrMsg") %>
-				    </span>
+				    </span> --%>
 <%
 } else {
 %>					 

@@ -2,7 +2,21 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../include/global_head.jsp" %>
 
-
+<script>
+/* 로그인 폼의 입력값을 검증하기 위한 함수로 빈값인지를 확인한다. */
+function validateForm(form) {
+    if (!form.user_id.value) {
+        alert("아이디를 입력하세요.");
+        form.user_id.focus();
+        return false;
+    }
+    if (form.user_pw.value == "") {
+        alert("패스워드를 입력하세요.");
+        form.user_pw.focus();
+        return false;
+    }
+}
+</script>
  <body>
 	<center>
 	<div id="wrap">
@@ -27,21 +41,6 @@
 				    데이터가 없다면 로그아웃 상태이므로 로그인 폼을 웹브라우저에 출력한다. */
 				    if (session.getAttribute("UserId") == null) { 
 				    %>
-				    <script>
-				    /* 로그인 폼의 입력값을 검증하기 위한 함수로 빈값인지를 확인한다. */
-				    function validateForm(form) {
-				        if (!form.user_id.value) {
-				            alert("아이디를 입력하세요.");
-				            form.user_id.focus();
-				            return false;
-				        }
-				        if (form.user_pw.value == "") {
-				            alert("패스워드를 입력하세요.");
-				            form.user_pw.focus();
-				            return false;
-				        }
-				    }
-				    </script>
 				    
 				    <form action="LoginProcess.jsp" method="post" name="loginFrm" onsubmit="return validateForm(this);">
 						<img src="../images/login_tit.gif" style="margin-bottom:30px;" />
