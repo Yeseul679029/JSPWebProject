@@ -1,15 +1,15 @@
-<%@page import="utils.BoardPage"%>
-<%@page import="model1.board.NoticeBoardDTO"%>
+<%@page import="model1.board.FreeBoardDAO"%>
+<%@page import="model1.board.FreeBoardDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Map"%>
-<%@page import="model1.board.NoticeBoardDAO"%>
+<%@page import="utils.BoardPage"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
 <%
 //DAO객체 생성을 통해 DB에 연결한다. 
-NoticeBoardDAO dao = new NoticeBoardDAO(application);
+FreeBoardDAO dao = new FreeBoardDAO(application);
 
 /* 검색어가 있는 경우 클라이언트가 선택한 필드명과 검색어를 저장할
 Map컬렉션을 생성한다. */
@@ -76,10 +76,11 @@ param.put("end", end);
 /* #paging관련 코드 추가 end# */
 
 //목록에 출력할 게시물을 인출하여 반환받는다. 
-List<NoticeBoardDTO> boardLists = dao.selectListPage(param);
+List<FreeBoardDTO> boardLists = dao.selectListPage(param);
 //DB 자원 해제 
 dao.close();
 %>
+
 <%@ include file="../include/global_head.jsp" %>
 
 
@@ -92,12 +93,13 @@ dao.close();
 
 		<div class="contents_box">
 			<div class="left_contents">
+				
 				<%@ include file = "../include/space_leftmenu.jsp" %>
 			</div>
 			<div class="right_contents">
 				<div class="top_title">
-					<img src="../images/space/sub01_title.gif" alt="공지사항" class="con_title" />
-					<p class="location"><img src="../images/center/house.gif" />&nbsp;&nbsp;열린공간&nbsp;>&nbsp;공지사항<p>
+					<img src="../images/space/sub03_title.gif" alt="자유게시판" class="con_title" />
+					<p class="location"><img src="../images/center/house.gif" />&nbsp;&nbsp;열린공간&nbsp;>&nbsp;자유게시판<p>
 				</div>
 				<div>
 <!-- 게시판 들어가는 부분start -->
@@ -146,7 +148,7 @@ else {
   
 	
     int countNum = 0;  
-    for (NoticeBoardDTO dto : boardLists)
+    for (FreeBoardDTO dto : boardLists)
     {
     	/* 현재 출력할 게시물의 갯수에 따라 번호가 달라지게 되므로 
     	totalCount를 사용하여 가상번호를 부여한다. */
@@ -158,7 +160,7 @@ else {
 <tr align="center">
     <td><%= virtualNum %></td>
     <td align="left"> 
-        <a href="sub01View.jsp?num=<%= dto.getNum() %>">
+        <a href="sub03View.jsp?num=<%= dto.getNum() %>">
         	<%= dto.getTitle() %></a> 
     </td>
     <td align="center"><%= dto.getId() %></td>
@@ -176,7 +178,7 @@ else {
         	<%= BoardPage.pagingStr(totalCount, pageSize,
                        blockPage, pageNum, request.getRequestURI()) %>
         	</td>
-            <td><button type="button" onclick="location.href='sub01Write.jsp';" class="btn btn-outline-dark btn-sm">글쓰기
+            <td><button type="button" onclick="location.href='sub03Write.jsp';" class="btn btn-outline-dark btn-sm">글쓰기
                 </button></td>
         </tr>
     </table>
@@ -187,7 +189,7 @@ else {
 		</div>
 		<%@ include file="../include/quick.jsp" %>
 	</div>
-
+	
 
 	<%@ include file="../include/footer.jsp" %>
 	</center>

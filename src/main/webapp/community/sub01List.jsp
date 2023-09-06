@@ -25,11 +25,11 @@
 <!-- 게시판 들어가는 부분start -->
 <!-- 검색 폼 -->
     <form method="get">  
-    <table class="table table-bordered" width="90%">
+    <table class="table" width="90%">
     <tr>
         <td align="center">
 	        <div class="input-group mb-3">
-	            <select name="searchField">
+	            <select name="searchField" style="width: 100px; text-align: center;">
 	                <option value="title">제목</option>
 	                <option value="content">내용</option>
 	            </select>

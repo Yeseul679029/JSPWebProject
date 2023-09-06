@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../include/global_head.jsp" %>
 
-
  <body>
 	<center>
 	<div id="wrap">
@@ -21,9 +20,35 @@
 					<p class="location"><img src="../images/center/house.gif" />&nbsp;&nbsp;센터소개&nbsp;>&nbsp;오시는길<p>
 				</div>
 				<div class="con_box">
+				
 					<p class="con_tit"><img src="../images/center/sub07_tit01.gif" alt="오시는길" /></p>
-					<img src="../images/center/sub07_img01.gif" class="con_img"/>
-					<p class="con_tit"><img src="../images/center/sub07_tit02.gif" alt="자가용 오시는길" /></p>
+					
+					<div id="map" style="width:100%;height:400px;"></div>
+					<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=021b11affa74dfcf6f8cc81da5de9135"></script>
+					<script>
+					var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+					var options = { //지도를 생성할 때 필요한 기본 옵션
+						center: new kakao.maps.LatLng(37.569657, 126.984284), //지도의 중심좌표.
+						level: 3 //지도의 레벨(확대, 축소 정도)
+					};
+					https://place.map.kakao.com/1729819382
+					var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+					
+					// 지도를 클릭한 위치에 표출할 마커입니다
+					var marker = new kakao.maps.Marker({ 
+					    // 지도 중심좌표에 마커를 생성합니다 
+					    position: map.getCenter() 
+					}); 
+					// 지도에 마커를 표시합니다
+					marker.setMap(map);
+
+					</script>
+
+					<!-- <img src="../images/center/sub07_img01.gif" class="con_img"/> -->
+					<p class="con_tit">
+					<br />
+					<img src="../images/center/sub07_tit02.gif" alt="자가용 오시는길" />
+					</p>
 					<div class="in_box">
 						<p class="dot_tit">강북 방향</p>
 						<p style="margin-bottom:15px;">강변북로 진입 후 월드컵 경기장 방면으로 우측방향 → 난지도길 가양대교 방향으로 좌회전 → 상암동길 상암초교 방면으로 우회전 </p>

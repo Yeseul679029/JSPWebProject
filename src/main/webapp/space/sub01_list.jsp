@@ -21,8 +21,7 @@
 				</div>
 				<div>
 
-<div class="row text-right" style="margin-bottom:20px;
-		padding-right:50px;">
+<div class="row text-right" style="margin-bottom:20px; padding-right:50px;">
 <!-- 검색부분 -->
 <form class="form-inline">	
 	<div class="form-group">
