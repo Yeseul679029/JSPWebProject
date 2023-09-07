@@ -119,7 +119,7 @@ else {
         	<!-- 공지사항게시판일때  -->
         	<% if (tname.equals("noticeboard")){ 
         			/* 로그인되어있고, 아이디가 test일때 글쓰기가 보인다. */
-        			if (session.getAttribute("UserId") !=null && session.getAttribute("UserId").equals("test")) { 
+        			if (session.getAttribute("UserId") !=null && session.getAttribute("UserId").equals("admin")) { 
         	%>
 	        		<td style="width: 11%">
 		            	<button type="button" onclick="location.href='sub01Write.jsp?tname=<%=tname %>';" 
