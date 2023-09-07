@@ -1,6 +1,6 @@
+<%@page import="model1.board.BoardDAO"%>
+<%@page import="model1.board.BoardDTO"%>
 <%@page import="utils.JSFunction"%>
-<%@page import="model1.board.NoticeBoardDAO"%>
-<%@page import="model1.board.NoticeBoardDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!-- 작성자 본인만 삭제할 수 있으므로 기본적인 로그인 체크는 해야한다. -->    
@@ -8,11 +8,12 @@
 <%
   //일련번호를 폼값으로 받는다. 
   String num = request.getParameter("num");   
+  String tname = request.getParameter("tname");   
 
-  NoticeBoardDTO dto = new NoticeBoardDTO();             
-  NoticeBoardDAO dao = new NoticeBoardDAO(application);
+  BoardDTO dto = new BoardDTO();             
+  BoardDAO dao = new BoardDAO(application);
   //본인 확인을 위해 기존 게시물을 인출한다. 
-  dto = dao.selectView(num);   
+  dto = dao.selectView(tname,num);   
 
   /* session영역에 저장된 회원정보를 얻어온 후 String 타입으로 변환한다. 
   session을 포함한 4가지 영역에 값을 저장할때는 모두 Object타입으로 자동
@@ -26,12 +27,12 @@
   if (sessionId.equals(dto.getId())) { 
   	//게시물을 삭제한다. 
       dto.setNum(num);
-      delResult = dao.deletePost(dto);
+      delResult = dao.deletePost(tname,dto);
       dao.close();
 
       if (delResult == 1) {
       	/* 게시물이 삭제되면 목록으로 이동한다. */
-          JSFunction.alertLocation("삭제되었습니다.", "sub01List.jsp", out); 
+          JSFunction.alertLocation("삭제되었습니다.", "sub01List.jsp?tname="+tname, out); 
       } 
       else {
       	/* 삭제에 실패하면 뒤로 이동한다. */

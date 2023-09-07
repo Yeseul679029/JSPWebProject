@@ -1,5 +1,5 @@
-<%@page import="model1.board.NoticeBoardDAO"%>
-<%@page import="model1.board.NoticeBoardDTO"%>
+<%@page import="model1.board.BoardDAO"%>
+<%@page import="model1.board.BoardDTO"%>
 <%@page import="utils.JSFunction"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -10,19 +10,20 @@
      //클라이언트가 작성한 폼값을 받아온다. 
      String title = request.getParameter("title");
      String content = request.getParameter("content");
+     String tname = request.getParameter("tname");
 
      //폼값을 DTO객체에 저장한다. 
-     NoticeBoardDTO dto = new NoticeBoardDTO();
+     BoardDTO dto = new BoardDTO();
      dto.setTitle(title);
      dto.setContent(content);
      /* 특히 아이디의 경우 로그인 후 작성페이지에 진입할 수 있으므로 
      세션영역에 저장된 회원아이디를 가져와서 저장한다. */
      dto.setId(session.getAttribute("UserId").toString());
 
-     NoticeBoardDAO dao = new NoticeBoardDAO(application);
+     BoardDAO dao = new BoardDAO(application);
 
      //기존과 같이 게시물 1개를 등록할때 사용..
-     int iResult = dao.insertWrite(dto);
+     int iResult = dao.insertWrite(tname,dto);
 
      //페이징 테스트를 위해 100개의 게시물을 한번에 입력..
    /*   int iResult = 0;
@@ -39,7 +40,7 @@
 
      if (iResult == 1) {
      	//글쓰기에 성공했다면 목록으로 이동한다. 
-         response.sendRedirect("sub01List.jsp");
+         response.sendRedirect("sub01List.jsp?tname="+tname);
      } 
      else {
      	//실패했다면 경고창(alert)을 띄우고, 뒤로(history) 이동한다. 

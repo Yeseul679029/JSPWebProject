@@ -175,8 +175,8 @@ else {
     <table  class="table table-bordered"  width="90%">
         <tr align="right">
         	<td align="center">
-        	<%= BoardPage.pagingStr(totalCount, pageSize,
-                       blockPage, pageNum, request.getRequestURI()) %>
+        	<%-- <%= BoardPage.pagingStr(totalCount, pageSize, tname,
+                       blockPage, pageNum, request.getRequestURI()) %> --%>
         	</td>
             <td><button type="button" onclick="location.href='sub03Write.jsp';" class="btn btn-outline-dark btn-sm">글쓰기
                 </button></td>

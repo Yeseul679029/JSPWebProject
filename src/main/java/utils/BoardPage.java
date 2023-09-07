@@ -3,7 +3,7 @@ package utils;
 public class BoardPage {
 	
 	/* List.jsp에서 전달해준 인수를 아래 매개변수를 통해 받는다. */ 
-    public static String pagingStr(int totalCount, int pageSize, int blockPage,
+    public static String pagingStr(int totalCount, int pageSize, int blockPage, String tname,
             int pageNum, String reqUrl) {
         
     	//페이지 바로가기 링크를 저장할 문자열변수 생성
@@ -30,9 +30,9 @@ public class BoardPage {
         바로가기 링크를 화면에 출력한다. 
          */
         if (pageTemp != 1) {
-            pagingStr += "<a href='" + reqUrl + "?pageNum=1'>[첫 페이지]</a>";            
+            pagingStr += "<a href='" + reqUrl + "?tname="+tname+"&pageNum=1'>[첫 페이지]</a>";            
             pagingStr += "&nbsp;";
-            pagingStr += "<a href='" + reqUrl + "?pageNum=" + (pageTemp - 1)
+            pagingStr += "<a href='" + reqUrl + "?tname="+tname+"&pageNum=" + (pageTemp - 1)
                          + "'>[이전 블록]</a>";
         }
 
@@ -48,7 +48,7 @@ public class BoardPage {
                 pagingStr += "&nbsp;" + pageTemp + "&nbsp;";
             } else {
             	//현재페이지가 아닌 경우에만 링크를 추가한다. 
-                pagingStr += "&nbsp;<a href='" + reqUrl + "?pageNum=" + pageTemp
+                pagingStr += "&nbsp;<a href='" + reqUrl + "?tname="+tname+"&pageNum=" + pageTemp
                              + "'>" + pageTemp + "</a>&nbsp;";
             }
             //반복하면서 1씩 증가시켜 순차적인 페이지번호를 출력한다.
@@ -59,10 +59,10 @@ public class BoardPage {
         //다음 페이지 블록 바로가기 링크 추가
         //마지막 페이지가 아닌 경우에만 다음블럭을 출력한다. 
         if (pageTemp <= totalPages) {
-            pagingStr += "<a href='" + reqUrl + "?pageNum=" + pageTemp
+            pagingStr += "<a href='" + reqUrl + "?tname="+tname+"&pageNum=" + pageTemp
                          + "'>[다음 블록]</a>";
             pagingStr += "&nbsp;";
-            pagingStr += "<a href='" + reqUrl + "?pageNum=" + totalPages
+            pagingStr += "<a href='" + reqUrl + "?tname="+tname+"&pageNum=" + totalPages
                          + "'>[마지막 페이지]</a>";
         }
 
@@ -74,7 +74,7 @@ public class BoardPage {
     
     
     
-    public static String pagingImg(int totalCount, int pageSize, int blockPage,
+    public static String pagingImg(int totalCount, int pageSize, int blockPage,String tname,
     		int pageNum, String reqUrl) {
     	
     	//페이지 바로가기 링크를 저장할 문자열변수 생성
@@ -101,9 +101,9 @@ public class BoardPage {
         바로가기 링크를 화면에 출력한다. 
     	 */
     	if (pageTemp != 1) {
-    		pagingStr += "<a href='" + reqUrl + "?pageNum=1'><img src= '../images/paging1.gif'></a>";            
+    		pagingStr += "<a href='" + reqUrl + "?tname="+tname+"&pageNum=1'><img src= '../images/paging1.gif'></a>";            
     		pagingStr += "&nbsp;";
-    		pagingStr += "<a href='" + reqUrl + "?pageNum=" + (pageTemp - 1)
+    		pagingStr += "<a href='" + reqUrl + "?tname="+tname+"&pageNum=" + (pageTemp - 1)
     				+ "'><img src= '../images/paging2.gif'></a>";
     	}
     	
@@ -119,7 +119,7 @@ public class BoardPage {
     			pagingStr += "&nbsp;" + pageTemp + "&nbsp;";
     		} else {
     			//현재페이지가 아닌 경우에만 링크를 추가한다. 
-    			pagingStr += "&nbsp;<a href='" + reqUrl + "?pageNum=" + pageTemp
+    			pagingStr += "&nbsp;<a href='" + reqUrl + "?tname="+tname+"&pageNum=" + pageTemp
     					+ "'>" + pageTemp + "</a>&nbsp;";
     		}
     		//반복하면서 1씩 증가시켜 순차적인 페이지번호를 출력한다.
@@ -130,10 +130,10 @@ public class BoardPage {
     	//다음 페이지 블록 바로가기 링크 추가
     	//마지막 페이지가 아닌 경우에만 다음블럭을 출력한다. 
     	if (pageTemp <= totalPages) {
-    		pagingStr += "<a href='" + reqUrl + "?pageNum=" + pageTemp
+    		pagingStr += "<a href='" + reqUrl + "?tname="+tname+"&pageNum=" + pageTemp
     				+ "'><img src= '../images/paging3.gif'></a>";
     		pagingStr += "&nbsp;";
-    		pagingStr += "<a href='" + reqUrl + "?pageNum=" + totalPages
+    		pagingStr += "<a href='" + reqUrl + "?tname="+tname+"&pageNum=" + totalPages
     				+ "'><img src= '../images/paging4.gif'></a>";
     	}
     	

@@ -1,22 +1,12 @@
-<%@page import="model1.board.NoticeBoardDTO"%>
-<%@page import="model1.board.NoticeBoardDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c"  uri="jakarta.tags.core"%>
+
 <%@ include file="../include/global_head.jsp" %>
 
-<%
-/* 목록에서 제목을 클릭하면 게시물의 일련번호를 ?num=99와 
-같이 받아온다. 게시물 인출을 위해 파라미터를 받아온다. */
-String num = request.getParameter("num");
-//DAO객체 생성을 통해 오라클에 연결한다. 
-NoticeBoardDAO dao = new NoticeBoardDAO(application);
-//게시물의 조회수 증가
-dao.updateVisitCount(num);
-//게시물의 내용을 인출하여 DTO에 저장한다. 
-NoticeBoardDTO dto = dao.selectView(num);
-dao.close();
-%>
+<%@ include file="ViewCommon.jsp" %>
+
+
 <script>
 //게시물 삭제를 위한 Javascript 함수
 function deletePost() {
@@ -46,10 +36,20 @@ function deletePost() {
 				<%@ include file = "../include/space_leftmenu.jsp" %>
 			</div>
 			<div class="right_contents">
+			
+			<!-- 타이틀 제목이미지 -->
+			<% if(tname.equals("noticeboard")){ %>
 				<div class="top_title">
 					<img src="../images/space/sub01_title.gif" alt="공지사항" class="con_title" />
 					<p class="location"><img src="../images/center/house.gif" />&nbsp;&nbsp;열린공간&nbsp;>&nbsp;공지사항<p>
 				</div>
+			<%}else if(tname.equals("freeboard")){ %>
+				<div class="top_title">
+					<img src="../images/space/sub03_title.gif" alt="자유게시판" class="con_title" />
+					<p class="location"><img src="../images/center/house.gif" />&nbsp;&nbsp;열린공간&nbsp;>&nbsp;자유게시판<p>
+				</div>
+			<%} %>	
+				
 				<div>
 <!-- 게시판 들어가는 부분start -->
 
@@ -57,6 +57,7 @@ function deletePost() {
 삭제 버튼 클릭시 일련번호를 서버로 전송한다.   -->
 <form name="writeFrm">
 <input type="hidden" name="num" value="<%= num %>" />
+<input type="hidden" name="tname" value="<%= tname %>" />
 
 	<!-- DTO에 저장된 내용을 getter를 통해 웹브라우저에 출력한다. -->  
     <table class="table table-bordered " width="90%">
@@ -106,7 +107,7 @@ if(session.getAttribute("UserId")!=null &&
 	dto.getId().equals(session.getAttribute("UserId").toString())){
 %>
      <button type="button"
-             onclick="location.href='sub01Edit.jsp?num=<%= dto.getNum() %>';" class="btn btn-outline-primary btn-sm">
+             onclick="location.href='sub01Edit.jsp?tname=<%=tname%>&num=<%= dto.getNum() %>';" class="btn btn-outline-primary btn-sm">
          수정하기</button>
          
      <!-- 삭제하기 버튼을 누르면 JS의 함수를 호출한다. 해당 함수는 
@@ -115,7 +116,7 @@ if(session.getAttribute("UserId")!=null &&
 <%
 }
 %>
-                <button type="button" onclick="location.href='sub01List.jsp';" class="btn btn-outline-dark btn-sm">
+                <button type="button" onclick="location.href='sub01List.jsp?tname=<%=tname %>'"+";" class="btn btn-outline-dark btn-sm">
                     목록 보기
                 </button>
             </td>

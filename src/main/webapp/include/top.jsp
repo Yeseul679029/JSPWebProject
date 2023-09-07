@@ -32,7 +32,7 @@ if (session.getAttribute("UserId") == null) {
 		<area shape="rect" alt="" title="" coords="86,0,188,33" href="../business/sub01.jsp" target="" />
 		<area shape="rect" alt="" title="" coords="193,0,316,33" href="../product/sub01.jsp" target="" />
 		<area shape="rect" alt="" title="" coords="321,0,420,33" href="../market/sub01.jsp" target="" />
-		<area shape="rect" alt="" title="" coords="428,0,529,33" href="../space/sub01List.jsp" target="" />
+		<area shape="rect" alt="" title="" coords="428,0,529,33" href="../space/sub01List.jsp?tname=noticeboard" target="" />
 		<area shape="rect" alt="" title="" coords="536,0,638,33" href="../community/sub01List.jsp" target="" />
 		<area shape="rect" alt="" title="" coords="641,0,749,33" href="../volunteer/sub01.jsp" target="" />
 	</map>

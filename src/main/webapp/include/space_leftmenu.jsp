@@ -8,11 +8,11 @@
 </object> -->
 <img src="../images/menu/5.jpg" alt="" usemap="#LNB"/>
 <map name="LNB">
-	<area shape="rect" alt="" title="" coords="10,9,134,44" href="../space/sub01List.jsp" target="" />
-	<area shape="rect" alt="" title="" coords="10,48,134,86" href="../space/sub02List.jsp" target="" />
-	<area shape="rect" alt="" title="" coords="10,90,134,125" href="../space/sub03List.jsp" target="" />
-	<area shape="rect" alt="" title="" coords="10,132,134,166" href="../space/sub04List.jsp" target="" />
-	<area shape="rect" alt="" title="" coords="10,172,134,207" href="../space/sub05List.jsp" target="" />
+	<area shape="rect" alt="" title="" coords="10,9,134,44" href="../space/sub01List.jsp?tname=noticeboard" target="" />
+	<area shape="rect" alt="" title="" coords="10,48,134,86" href="../space/sub02.jsp" target="" />
+	<area shape="rect" alt="" title="" coords="10,90,134,125" href="../space/sub01List.jsp?tname=freeboard" target="" />
+	<area shape="rect" alt="" title="" coords="10,132,134,166" href="../space/sub04.jsp" target="" />
+	<area shape="rect" alt="" title="" coords="10,172,134,207" href="../space/sub05.jsp" target="" />
 </map>
 <!-- <ul>
 	<li><a href="../space/sub01.jsp">메뉴1</a></li>
