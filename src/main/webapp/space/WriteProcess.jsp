@@ -12,6 +12,7 @@
      String content = request.getParameter("content");
      String tname = request.getParameter("tname");
 
+     System.out.println("tname="+tname);
      //폼값을 DTO객체에 저장한다. 
      BoardDTO dto = new BoardDTO();
      dto.setTitle(title);

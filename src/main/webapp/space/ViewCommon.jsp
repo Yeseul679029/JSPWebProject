@@ -8,6 +8,7 @@
 같이 받아온다. 게시물 인출을 위해 파라미터를 받아온다. */
 String tname = request.getParameter("tname");
 String num = request.getParameter("num");
+System.out.println(tname);
 //DAO객체 생성을 통해 오라클에 연결한다. 
 BoardDAO dao = new BoardDAO(application);
 //게시물의 조회수 증가

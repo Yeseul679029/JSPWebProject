@@ -111,10 +111,10 @@ function validateForm(form) {
 			<div class="main_con_center">
 				<p class="main_title"><img src="../images/main_title02.gif" alt="공지사항 NOTICE" /><a href="../space/sub01List.jsp?tname=noticeboard"><img src="../images/more.gif" alt="more" class="more_btn" /></a></p>
 			<!-- 공지사항 게시물4개 -->
-				<ul class="main_board_list">
+				<ul class="main_board_list ">
 				<!-- 확장 for문으로 게시글을 인출 -->
 					<c:forEach items="${notice }" var="row" >
-						<li><a href="../space/sub01View.jsp?tname=noticeboard&num=${row.num}">${row.title }</a><span>${row.postdate }</span></li>
+						<li><p style="width: 230px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><a href="../space/sub01View.jsp?tname=noticeboard&num=${row.num}">${row.title }</a><span>${row.postdate }</span></p></li>
 					</c:forEach>
 				</ul>
 			</div>
@@ -124,7 +124,7 @@ function validateForm(form) {
 				<ul class="main_board_list">
 				<!-- 확장 for문으로 게시글을 인출 -->
 					<c:forEach items="${free }" var="free">
-						<li><p><a href="../space/sub01View.jsp?tname=freeboard&num=${free.num}">${free.title }</a><span>${free.postdate }</span></p></li>
+						<li><p style="width: 230px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><a href="../space/sub01View.jsp?tname=freeboard&num=${free.num}">${free.title }</a><span>${free.postdate }</span></p></li>
 					</c:forEach>
 				</ul>
 			</div>

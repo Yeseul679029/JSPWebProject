@@ -289,7 +289,7 @@ function postOpen(){
 							<th><img src="../images/join_tit002.gif" alt="아이디"/></th>
 							<td>
 								<input type="text" name="id" value="" class="join_input" />&nbsp;
-								<img src="../images/btn_idcheck.gif" alt="중복확인" onclick="idCheck(membership);" style="cursor:hand;"/>&nbsp;&nbsp;
+								<img src="../images/btn_idcheck.gif" alt="중복확인" onclick="idCheck(document.membership);" style="cursor:hand;"/>&nbsp;&nbsp;
 <!-- 							<a onclick="idCheck(this.form);" style="cursor:hand;"><img src="../images/btn_idcheck.gif" alt="중복확인"/></a>&nbsp;&nbsp; -->
 								<span>* 4자 이상 12자 이내의 영문/숫자 조합하여 공백 없이 기입</span>
 							</td>

@@ -37,6 +37,11 @@ String tname = "Noticeboard";
 					<img src="../images/space/sub03_title.gif" alt="자유게시판" class="con_title" />
 					<p class="location"><img src="../images/center/house.gif" />&nbsp;&nbsp;열린공간&nbsp;>&nbsp;자유게시판<p>
 				</div>
+			<%}else if(tname.equals("referenceboard")){ %>
+				<div class="top_title">
+					<img src="../images/space/sub05_title.gif" alt="정보자료실" class="con_title" />
+					<p class="location"><img src="../images/center/house.gif" />&nbsp;&nbsp;열린공간&nbsp;>&nbsp;정보자료실<p>
+				</div>
 			<%} %>
 				
 				<div>
@@ -60,13 +65,25 @@ String tname = "Noticeboard";
     </table>
     </form>
     
-    <table class="table table-bordered table-hover"  width="90%">
+    <table class="table table-bordered table-hover"  width="100%">
+    <colgroup> 
+	    <col width="10%">
+	    <col width="50%">
+	    <col width="15%">
+	    <col width="10%">
+	    <col width="12%"> 
+    </colgroup>
         <tr class="text-center ">
-            <th width="10%">번호</th>
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>조회수</th>
+            <th>작성일</th>
+<!--        <th width="10%">번호</th>
             <th width="50%">제목</th>
             <th width="15%">작성자</th>
             <th width="10%">조회수</th>
-            <th width="15%">작성일</th>
+            <th width="15%">작성일</th> -->
         </tr>
 <%
 //컬렉션에 입력된 데이터가 없는지 확인한다. 
@@ -98,8 +115,11 @@ else {
 <tr align="center">
     <td><%= virtualNum %></td>
     <td align="left"> 
-        <a href="sub01View.jsp?tname=<%=tname %>&num=<%= dto.getNum() %>">
-        	<%= dto.getTitle() %></a> 
+    <div class="text-truncate" style="width: 340px; ">
+<!--     white-space: nowrap; overflow: hidden; text-overflow: ellipsis; -->
+       <a href="sub01View.jsp?tname=<%=tname %>&num=<%= dto.getNum() %>">
+        	<%= dto.getTitle() %></a>
+    </div>
     </td>
     <td align="center"><%= dto.getName() %></td>
     <td align="center"><%= dto.getVisitcount() %></td>
@@ -110,7 +130,8 @@ else {
 }
 %>
     </table>
-    <table  class="table table-bordered"  width="90%">
+    <table  class="table "  width="90%">
+    
         <tr align="right">
         	<td align="center">
         	<%= BoardPage.pagingStr(totalCount, pageSize,
@@ -127,7 +148,8 @@ else {
 	            	</td>
 					<%}
     		/* 자유게시판일때 글쓰기가 보인다. */
-        	}else if(tname.equals("freeboard")){ %>
+        	}else{ %>
+        	<!-- }else if(tname.equals("freeboard")){ %> -->
 			<td style="width: 11%">
 	            <button type="button" onclick="location.href='sub01Write.jsp?tname=<%=tname %>';" 
 	            	class="btn btn-outline-dark btn-sm">글쓰기</button>

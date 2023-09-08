@@ -48,6 +48,11 @@ function deletePost() {
 					<img src="../images/space/sub03_title.gif" alt="자유게시판" class="con_title" />
 					<p class="location"><img src="../images/center/house.gif" />&nbsp;&nbsp;열린공간&nbsp;>&nbsp;자유게시판<p>
 				</div>
+			<%}else if(tname.equals("referenceboard")){ %>
+				<div class="top_title">
+					<img src="../images/space/sub05_title.gif" alt="정보자료실" class="con_title" />
+					<p class="location"><img src="../images/center/house.gif" />&nbsp;&nbsp;열린공간&nbsp;>&nbsp;정보자료실<p>
+				</div>
 			<%} %>	
 				
 				<div>
@@ -85,6 +90,9 @@ function deletePost() {
                 <%= dto.getContent().replace("\r\n", "<br/>") %>
             </td> 
         </tr>
+        <!-- 첨부파일 테이블 -->
+        <% if(tname.equals("referenceboard")){ %>
+        <tr><td>asdfasdfasd</td></tr>
         <%-- <tr>
 	        <td>첨부파일</td>
 	        <td colspan="3">           
@@ -95,7 +103,8 @@ function deletePost() {
 	        	</a>
 	        	</c:if> 
 	        </td>
-	    </tr>  --%>
+	    </tr>   --%>
+	    <%} %>	
         <tr>
             <td colspan="4" align="center">
 <%

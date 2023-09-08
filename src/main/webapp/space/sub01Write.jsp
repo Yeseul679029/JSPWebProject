@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core"%>
 <%@ include file="./IsLoggedIn.jsp"%> 
 
 <% 
@@ -47,19 +48,21 @@ function validateForm(form) {
 					<img src="../images/space/sub03_title.gif" alt="자유게시판" class="con_title" />
 					<p class="location"><img src="../images/center/house.gif" />&nbsp;&nbsp;열린공간&nbsp;>&nbsp;자유게시판<p>
 				</div>
+			<%}else if(tname.equals("referenceboard")){ %>
+				<div class="top_title">
+					<img src="../images/space/sub05_title.gif" alt="정보자료실" class="con_title" />
+					<p class="location"><img src="../images/center/house.gif" />&nbsp;&nbsp;열린공간&nbsp;>&nbsp;정보자료실<p>
+				</div>
 			<%} %>
 				
 		
 				<div>
 <!-- 게시판 들어가는 부분start -->
 
-<!-- 글쓰기 폼은 반드시 post방식으로 제작해야한다. get방식은 파일을 첨부할
-수없고, 전송량도 4Kb로 제한된다. 하지만 post는 전송량의 제한이 없고 이미지,
-음원 등의 파일도 전송할 수 있기때문이다.  -->
-<form name="writeFrm" method="post" action="WriteProcess.jsp"
+<form name="writeFrm" method="post" action="WriteProcess.jsp" 
       onsubmit="return validateForm(this);">
-    <input type="hidden" name="tname" value="<%= tname %>" />
-    <table class="table table-bordered" width="90%">
+    <input type="hid-den" name="tname" value="<%= tname %>" />
+    <table class="table table-bordered" width="100%">
         <tr>
             <td>제목</td>
             <td>
@@ -72,6 +75,34 @@ function validateForm(form) {
                 <textarea name="content" style="width: 90%; height: 100px;"></textarea>
             </td>
         </tr>
+    <!-- 첨부파일 테이블 -->
+    <% if(tname.equals("referenceboard")){ %>
+    	<script>
+			/* 폼값을 submit(전송)할때 빈값에 대한 검증을 위한 JS 함수
+			필수사항인 제목과 첨부파일에 대해서만 검증한다. */
+			function validateForm(form) {
+				if (form.ofile.value == ""){
+					alert("첨부파일은 필수 입력입니다.");
+					return false;
+				}
+			}
+		</script>
+        <tr>
+	        <td>첨부파일</td>
+	        <td colspan="3">           
+	        	<c:if test="${ not empty dto.ofile }">
+	        	${ dto.ofile }
+	        	<%-- <a href="../mvcboard/download.do?ofile=<%= dto.getOfile() %>&sfile=<%= dto.getSfile() %>&num=<%= dto.getNum() %>"> --%>
+	                [다운로드]            
+	        	</a>
+	        	</c:if> 
+	        </td>
+	    </tr>
+	<%} %>	
+        
+        
+        
+        
         <tr>
             <td colspan="2" align="center">
                 <button type="submit" class="btn btn-outline-primary btn-sm">작성 완료</button>

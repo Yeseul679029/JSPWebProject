@@ -13,10 +13,27 @@ public class BoardDTO {
     private String name;
     //테이블명을 추가
     private String tname;
+    //파일첨부 변수추가
+    private String ofile;
+    private String sfile;
+    
     
     //특별한 이유가 없다면 생성자는 선언하지 않는다. 
 
     //getter/setter 메서드 
+    public String getOfile() {
+		return ofile;
+	}
+	public void setOfile(String ofile) {
+		this.ofile = ofile;
+	}
+	public String getSfile() {
+		return sfile;
+	}
+	public void setSfile(String sfile) {
+		this.sfile = sfile;
+	}
+	
     public String getNum() {
         return num;
     }

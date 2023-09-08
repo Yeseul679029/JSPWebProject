@@ -14,12 +14,7 @@ System.out.println(userName+"="+userEmail+"="+userId);
 out.println(userName+"="+userEmail+"="+userId);
 
 
-String oracleDriver = application.getInitParameter("OracleDriver");
-String oracleURL = application.getInitParameter("OracleURL");
-String oracleId = application.getInitParameter("OracleId");
-String oraclePwd = application.getInitParameter("OraclePwd");
-
-MemberShipDAO dao = new MemberShipDAO(oracleDriver, oracleURL, oracleId, oraclePwd);
+MemberShipDAO dao = new MemberShipDAO();
 MemberShipDTO memberPwDTO = dao.getMemberPw(userId, userName, userEmail);
 dao.close();
 
