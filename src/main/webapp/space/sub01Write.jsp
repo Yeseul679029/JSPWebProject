@@ -59,9 +59,9 @@ function validateForm(form) {
 				<div>
 <!-- 게시판 들어가는 부분start -->
 
-<form name="writeFrm" method="post" action="WriteProcess.jsp" 
+<form name="writeFrm" method="post" action="WriteProcess.jsp" enctype="multipart/form-data"
       onsubmit="return validateForm(this);">
-    <input type="hid-den" name="tname" value="<%= tname %>" />
+    <input type="hidden" name="tname" value="<%= tname %>" />
     <table class="table table-bordered" width="100%">
         <tr>
             <td>제목</td>
@@ -90,12 +90,7 @@ function validateForm(form) {
         <tr>
 	        <td>첨부파일</td>
 	        <td colspan="3">           
-	        	<c:if test="${ not empty dto.ofile }">
-	        	${ dto.ofile }
-	        	<%-- <a href="../mvcboard/download.do?ofile=<%= dto.getOfile() %>&sfile=<%= dto.getSfile() %>&num=<%= dto.getNum() %>"> --%>
-	                [다운로드]            
-	        	</a>
-	        	</c:if> 
+	        	<input type="file" name="ofile"/>
 	        </td>
 	    </tr>
 	<%} %>	

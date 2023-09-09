@@ -126,6 +126,36 @@ public class BoardDAO extends JDBConnect {
         return result;
     }
     
+    
+    //게시물 입력을 위한 메서드. 폼값이 저장된 DTO객체를 인수로 받는다.
+    public int FileWrite(String tname, BoardDTO dto) {
+    	int result = 0;        
+    	try {
+    		/* 인파라미터가 있는 동적쿼리문으로 insert문을 작성한다. 
+        	게시물의 일련번호는 시퀀스를 통해 자동부여하고, 조회수는 
+        	0으로 입력한다. */
+    		String query = "INSERT INTO "+tname+" ( "
+    				+ " num,title,content,id,ofile,sfile,visitcount) "
+    				+ " VALUES ( "
+    				+ " seq_"+tname+"_num.NEXTVAL, ?, ?, ?, ?, ?, 0)";  
+    		psmt = con.prepareStatement(query); 
+    		//인파라미터는 DTO에 저장된 내용으로 채워준다. 
+    		psmt.setString(1, dto.getTitle());  
+    		psmt.setString(2, dto.getContent());
+    		psmt.setString(3, dto.getId());  
+    		psmt.setString(4, dto.getOfile());  
+    		psmt.setString(5, dto.getSfile());  
+    		//insert쿼리문을 실행한 후 결과값(int)을 반환받는다. 
+    		result = psmt.executeUpdate(); 
+    	}
+    	catch (Exception e) {
+    		System.out.println("게시물 입력 중 예외 발생");
+    		e.printStackTrace();
+    	}
+    	
+    	return result;
+    }
+    
     //인수로 전달된 게시물의 일련번호로 하나의 게시물을 인출한다. 
     public BoardDTO selectView(String tname, String num) { 
     	//하나의 레코드를 저장하기 위한 DTO객체 생성
