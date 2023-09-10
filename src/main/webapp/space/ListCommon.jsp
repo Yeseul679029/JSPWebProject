@@ -21,6 +21,7 @@ BoardDAO dao = new BoardDAO(application);
 Map컬렉션을 생성한다. */
 Map<String, Object> param = new HashMap<String, Object>();
 
+System.out.println("tname="+ tname);
 
 /***********************************/
 /*현재 게시판에서 사용하는 테이블을 Map컬렉션에 저장한다.*/

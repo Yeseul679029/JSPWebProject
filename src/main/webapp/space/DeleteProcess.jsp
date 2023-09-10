@@ -1,3 +1,4 @@
+<%@page import="java.io.File"%>
 <%@page import="model1.board.BoardDAO"%>
 <%@page import="model1.board.BoardDTO"%>
 <%@page import="utils.JSFunction"%>
@@ -30,13 +31,24 @@
       delResult = dao.deletePost(tname,dto);
       dao.close();
 
+   	  //게시물 삭제 성공 시 첨부파일도 삭제
       if (delResult == 1) {
+		//서버에 실제 저장된 파일명으로 삭제한다.
+   	  	String saveFileName = dto.getSfile();
+   	 	String sDirectory = application.getRealPath("/Uploads");
+		File file = new File(sDirectory + File.separator + saveFileName);
+		//해당 경로에 파일이 있으면 삭제한다.
+		if (file.exists()){
+			file.delete();
+		}
+   	 	
+    	  
       	/* 게시물이 삭제되면 목록으로 이동한다. */
-          JSFunction.alertLocation("삭제되었습니다.", "sub01List.jsp?tname="+tname, out); 
+       	JSFunction.alertLocation("삭제되었습니다.", "sub01List.jsp?tname="+tname, out); 
       } 
       else {
       	/* 삭제에 실패하면 뒤로 이동한다. */
-          JSFunction.alertBack("삭제에 실패하였습니다.", out);
+         JSFunction.alertBack("삭제에 실패하였습니다.", out);
       } 
   } 
   else {

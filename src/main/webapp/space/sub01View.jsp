@@ -1,3 +1,5 @@
+
+<%@page import="java.net.URLEncoder"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c"  uri="jakarta.tags.core"%>
@@ -88,22 +90,28 @@ function deletePost() {
             	<!-- 입력시 줄바꿈을 위한 엔터는 \r\n으로 입력되므로 
             	웹	브라우저에 출력시에는 <br>태그로 변경해야한다. -->
                 <%= dto.getContent().replace("\r\n", "<br/>") %>
+                
+                <%
+                if(isImage == true){
+               	%>
+               	<br /><img src="../Uploads/<%=dto.getOfile()%>" style="max-width: 100%" >
+               	<%
+                }
+                %>
             </td> 
         </tr>
         <!-- 첨부파일 테이블 -->
         <% if(tname.equals("referenceboard")){ %>
-        <tr><td>asdfasdfasd</td></tr>
-        <%-- <tr>
+        <tr>
 	        <td>첨부파일</td>
-	        <td colspan="3">           
-	        	<c:if test="${ not empty dto.ofile }">
-	        	${ dto.ofile }
-	        	<a href="../mvcboard/download.do?ofile=<%= dto.getOfile() %>&sfile=<%= dto.getSfile() %>&num=<%= dto.getNum() %>">
+	        <td colspan="3">
+	        	<%= dto.getOfile() %>
+	        	<a href="DownloadProcess.jsp?ofile=<%= URLEncoder.encode(dto.getOfile(),"UTF-8") 
+	        		%>&sfile=<%= URLEncoder.encode(dto.getSfile(),"UTF-8") %>">
 	                [다운로드]            
 	        	</a>
-	        	</c:if> 
 	        </td>
-	    </tr>   --%>
+	    </tr>
 	    <%} %>	
         <tr>
             <td colspan="4" align="center">

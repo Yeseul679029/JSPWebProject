@@ -23,7 +23,7 @@ public class BoardDAO extends JDBConnect {
     	
     	//게시물의 갯수를 반환하기 위한 변수 
     	int totalCount = 0; 
-
+    	System.out.println("tname="+ map.get("tname"));
     	//게시물 수를 얻어오기 위한 퀴리문 작성 
         String query = "SELECT COUNT(*) FROM "+ map.get("tname");        
         /* 검색어가 있는 경우 where절을 추가하여 조건에 맞는 게시물만
@@ -190,8 +190,12 @@ public class BoardDAO extends JDBConnect {
                 dto.setContent(rs.getString("content")); 
                 dto.setPostdate(rs.getDate("postdate")); 
                 dto.setId(rs.getString("id"));
-                dto.setVisitcount(rs.getString(6));
+                dto.setVisitcount(rs.getString("visitcount"));
                 dto.setName(rs.getString("name")); 
+                if(tname.equals("referenceboard")) {
+                	dto.setOfile(rs.getString("ofile")); 
+                	dto.setSfile(rs.getString("sfile")); 
+                }
             }
         } 
         catch (Exception e) {
@@ -246,6 +250,32 @@ public class BoardDAO extends JDBConnect {
         }
         
         return result; 
+    }
+
+    //게시물 수정하기 
+    public int updateFileEdit(BoardDTO dto, String tname) { 
+    	int result = 0;        
+    	try {
+    		//특정 일련번호에 해당하는 게시물을 수정한다. 
+    		String query = "UPDATE "+ tname +" SET "
+    				+ " title=?, content=?, ofile=?, sfile=? "
+    				+ " WHERE num=?";
+    		//쿼리문의 인파라미터 설정 
+    		psmt = con.prepareStatement(query);
+    		psmt.setString(1, dto.getTitle());
+    		psmt.setString(2, dto.getContent());
+    		psmt.setString(3, dto.getOfile());
+    		psmt.setString(4, dto.getSfile());
+    		psmt.setString(5, dto.getNum());
+    		//수정된 레코드의 갯수를 반환한다. 
+    		result = psmt.executeUpdate();
+    	} 
+    	catch (Exception e) {
+    		System.out.println("게시물 수정 중 예외 발생");
+    		e.printStackTrace();
+    	}
+    	
+    	return result; 
     }
     
     //게시물 삭제하기 
@@ -306,6 +336,7 @@ public class BoardDAO extends JDBConnect {
                 dto.setId(rs.getString("id"));
                 dto.setVisitcount(rs.getString("visitcount"));
                 dto.setName(rs.getString("name"));
+                
                 
                 
                 bbs.add(dto);
