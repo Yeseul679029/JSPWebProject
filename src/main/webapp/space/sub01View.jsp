@@ -94,7 +94,7 @@ function deletePost() {
                 <%
                 if(isImage == true){
                	%>
-               	<br /><img src="../Uploads/<%=dto.getOfile()%>" style="max-width: 100%" >
+               	<br /><img src="../Uploads/<%=dto.getSfile()%>" style="max-width: 100%" >
                	<%
                 }
                 %>
