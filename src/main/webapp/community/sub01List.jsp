@@ -3,6 +3,13 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ include file="../include/global_head.jsp" %>
 
+<%
+/*tname을 변수로 테이블명을 넘겨준다.
+String tname = "Noticeboard";
+좀더 효율적으로는 request.getParameter를 사용해 넘겨받는다 */
+
+String tname = request.getParameter("tname");
+%>
 
  <body>
 	<center>
@@ -17,11 +24,19 @@
 				<%@ include file = "../include/community_leftmenu.jsp" %>
 			</div>
 			<div class="right_contents">
+			<% if(tname.equals("empboard")){ %>
 				<div class="top_title">
 					<img src="../images/community/sub01_title.gif" alt="직원자료실" class="con_title" />
 					<p class="location"><img src="../images/center/house.gif" />&nbsp;&nbsp;커뮤니티&nbsp;>&nbsp;직원자료실<p>
 				</div>
-				<div>
+			<%}else if(tname.equals("guardboard")){ %>
+				<div class="top_title">
+					<img src="../images/community/sub02_title.gif" alt="보호자게시판" class="con_title" />
+					<p class="location"><img src="../images/center/house.gif" />&nbsp;&nbsp;커뮤니티&nbsp;>&nbsp;보호자게시판<p>
+				</div>
+			<%} %>
+			<div>
+			
 <!-- 게시판 들어가는 부분start -->
 <!-- 검색 폼 -->
     <form method="get">  
@@ -73,8 +88,8 @@
                 ${ map.totalCount - (((map.pageNum-1) * map.pageSize) 
                 	+ loop.index)}
             </td>
-            <td align="left">  <!-- 제목(링크) -->
-                <a href="../mvcboard/view.do?idx=${ row.idx }">${ row.title }</a> 
+            <td class="text-truncate"  align="left">  <!-- 제목(링크) -->
+                <a href="../community/sub01view.do?num=${ row.num }">${ row.title }</a> 
             </td> 
             <td>${ row.name }</td>  <!-- 작성자 -->
             <td>${ row.visitcount }</td>  <!-- 조회수 -->
@@ -84,7 +99,7 @@
             해당 링크의 파라미터는 원본파일명, 저장된파일명, 일련번호 3개로 
             구성된다. 특히 일련번호는 다운로드 횟수 증가에 사용된다.  -->
             <c:if test="${ not empty row.ofile }">
-                <a href="../mvcboard/download.do?ofile=${ row.ofile }&sfile=${ row.sfile }&idx=${ row.idx }">[Down]</a>
+                <a href="../community/download.do?ofile=${ row.ofile }&sfile=${ row.sfile }&num=${ row.num }">[Down]</a>
             </c:if>
             </td>
         </tr>
@@ -99,8 +114,10 @@
             <td>
                 ${ map.pagingImg }
             </td>
-            <td width="100"><button type="button"
-                onclick="location.href='../mvcboard/write.do';" class="btn btn-outline-dark btn-sm">글쓰기</button></td>
+            <td width="100">
+            	<button type="button" onclick="location.href='../community/write.do';" 
+                	class="btn btn-outline-dark btn-sm">글쓰기</button>
+            </td>
         </tr>
     </table>
 

@@ -49,11 +49,13 @@
 //컬렉션에 입력된 데이터가 없는지 확인한다. 
 if (boardLists.isEmpty()) {
 %>
+	<table class="table table-bordered table-hover"  width="100%">
         <tr>
             <td colspan="5" align="center">
                 등록된 게시물이 없습니다^^*
             </td>
         </tr>
+    </table>
 <%
 }
 else {
