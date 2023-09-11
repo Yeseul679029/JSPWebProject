@@ -27,7 +27,7 @@
 .calendar td{border-bottom:1px solid #e7e7e7; border-right:1px solid #e7e7e7; font-size:11px;}
 .main_photo_list{float:left;}
 .main_photo_list li{float:left; width:101px; margin-bottom:5px;}
-.main_photo_list li img{border:1px solid #cecece;}
+.main_photo_list li img{border:1px solid #cecece; width: 95px;height: 63px;}
 .main_photo_list dd a{font-size:11px; color:#797979;}
 #footer{background:url(../images/footer_bg.gif) top repeat-x; clear:both; padding-bottom:25px;}
 #footer_wrap{width:960px; padding-top:10px;}

@@ -109,8 +109,14 @@ if(part != null ){
      dao.close();
 
      if (iResult == 1) {
-     	//글쓰기에 성공했다면 목록으로 이동한다. 
-         response.sendRedirect("sub01List.jsp?tname="+tname);
+     	
+    	if(tname.equals("imagesboard")){
+	    	 //글쓰기에 성공했다면 목록으로 이동한다. 
+	        response.sendRedirect("sub04List.jsp?tname="+tname);    		
+    	}
+    	else{
+	        response.sendRedirect("sub01List.jsp?tname="+tname);    		
+    	}
      } 
      else {
      	//실패했다면 경고창(alert)을 띄우고, 뒤로(history) 이동한다. 

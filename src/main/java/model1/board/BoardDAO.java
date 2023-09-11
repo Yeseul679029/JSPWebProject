@@ -23,7 +23,13 @@ public class BoardDAO extends JDBConnect {
     	
     	//게시물의 갯수를 반환하기 위한 변수 
     	int totalCount = 0; 
-    	System.out.println("tname="+ map.get("tname"));
+    	
+		/*
+		 * System.out.println("tname="+ map.get("tname"));
+		 * System.out.println("searchField="+ map.get("searchField"));
+		 * System.out.println("searchWord="+ map.get("searchWord"));
+		 */
+    	
     	//게시물 수를 얻어오기 위한 퀴리문 작성 
         String query = "SELECT COUNT(*) FROM "+ map.get("tname");        
         /* 검색어가 있는 경우 where절을 추가하여 조건에 맞는 게시물만
@@ -192,7 +198,7 @@ public class BoardDAO extends JDBConnect {
                 dto.setId(rs.getString("id"));
                 dto.setVisitcount(rs.getString("visitcount"));
                 dto.setName(rs.getString("name")); 
-                if(tname.equals("referenceboard")) {
+                if(tname.equals("referenceboard")||tname.equals("imagesboard")) {
                 	dto.setOfile(rs.getString("ofile")); 
                 	dto.setSfile(rs.getString("sfile")); 
                 }
@@ -336,6 +342,12 @@ public class BoardDAO extends JDBConnect {
                 dto.setId(rs.getString("id"));
                 dto.setVisitcount(rs.getString("visitcount"));
                 dto.setName(rs.getString("name"));
+//                dto.setOfile(rs.getString("ofile"));
+//            	dto.setSfile(rs.getString("sfile"));
+                if(map.get("tname").equals("imagesboard")) {
+                	dto.setOfile(rs.getString("ofile"));
+                	dto.setSfile(rs.getString("sfile"));
+                }
                 
                 
                 

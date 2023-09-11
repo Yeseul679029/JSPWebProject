@@ -50,6 +50,11 @@ function deletePost() {
 					<img src="../images/space/sub03_title.gif" alt="자유게시판" class="con_title" />
 					<p class="location"><img src="../images/center/house.gif" />&nbsp;&nbsp;열린공간&nbsp;>&nbsp;자유게시판<p>
 				</div>
+			<%}else if(tname.equals("imagesboard")){ %>
+				<div class="top_title">
+					<img src="../images/space/sub04_title.gif" alt="사진게시판" class="con_title" />
+					<p class="location"><img src="../images/center/house.gif" />&nbsp;&nbsp;열린공간&nbsp;>&nbsp;사진게시판<p>
+				</div>
 			<%}else if(tname.equals("referenceboard")){ %>
 				<div class="top_title">
 					<img src="../images/space/sub05_title.gif" alt="정보자료실" class="con_title" />
@@ -101,7 +106,7 @@ function deletePost() {
             </td> 
         </tr>
         <!-- 첨부파일 테이블 -->
-        <% if(tname.equals("referenceboard")){ %>
+        <% if(tname.equals("referenceboard")||tname.equals("imagesboard")){ %>
         <tr>
 	        <td>첨부파일</td>
 	        <td colspan="3">
@@ -132,10 +137,14 @@ if(session.getAttribute("UserId")!=null &&
      <button type="button" onclick="deletePost();" class="btn btn-outline-danger btn-sm">삭제하기</button> 
 <%
 }
-%>
+%>    
+                <% if(tname.equals("imagesboard")){ %>
+                <button type="button" onclick="location.href='sub04List.jsp?tname=<%= tname%>';" class="btn btn-outline-dark btn-sm">
+                    목록 보기</button>
+                <%}else{ %>
                 <button type="button" onclick="location.href='sub01List.jsp?tname=<%=tname %>'"+";" class="btn btn-outline-dark btn-sm">
-                    목록 보기
-                </button>
+                    목록 보기</button>
+                <%} %>
             </td>
         </tr>
     </table>

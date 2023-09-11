@@ -119,7 +119,7 @@ function validateForm(form) {
 				</ul>
 			</div>
 			<div class="main_con_right">
-				<p class="main_title"><img src="../images/main_title03.gif" alt="자유게시판 FREE BOARD" /><a href="../space/sub01List.jsp?tname=freeboard""><img src="../images/more.gif" alt="more" class="more_btn" /></a></p>
+				<p class="main_title"><img src="../images/main_title03.gif" alt="자유게시판 FREE BOARD" /><a href="../space/sub01List.jsp?tname=freeboard"><img src="../images/more.gif" alt="more" class="more_btn" /></a></p>
 			<!-- 자유게시판 게시물4개 -->
 				<ul class="main_board_list">
 				<!-- 확장 for문으로 게시글을 인출 -->
@@ -229,8 +229,19 @@ function validateForm(form) {
 				</div>
 			</div>
 			<div class="main_con_right">
-				<p class="main_title"><img src="../images/main_title06.gif" alt="사진게시판 PHOTO BOARD" /><a href="/space/sub04.jsp"><img src="../images/more.gif" alt="more" class="more_btn" /></a></p>
+				<p class="main_title"><img src="../images/main_title06.gif" alt="사진게시판 PHOTO BOARD" /><a href="../space/sub04List.jsp?tname=imagesboard">
+						<img src="../images/more.gif" alt="more" class="more_btn" /></a></p>
+				<!-- 사진게시판 게시물6개 -->
 				<ul class="main_photo_list">
+					<c:forEach items="${images }" var="photo">
+						<li class="text-truncate">
+							<dl>
+								<dt><a href="../space/sub01View.jsp?tname=imagesboard&num=${photo.num}"><img src="../Uploads/${photo.sfile }" /></a></dt>
+								<dd style="width: 85px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><a href="../space/sub01View.jsp?tname=noticeboard&num=${photo.num}">${photo.title}</a></dd>
+							</dl>
+						</li>
+					</c:forEach>
+					<!-- 
 					<li>
 						<dl>
 							<dt><a href=""><img src="../images/g_img.gif" /></a></dt>
@@ -261,12 +272,7 @@ function validateForm(form) {
 							<dd><a href="">마포 구립 장애인...</a></dd>
 						</dl>
 					</li>
-					<li>
-						<dl>
-							<dt><a href=""><img src="../images/g_img.gif" /></a></dt>
-							<dd><a href="">마포 구립 장애인...</a></dd>
-						</dl>
-					</li>
+					 -->
 				</ul>
 			</div>
 		</div>

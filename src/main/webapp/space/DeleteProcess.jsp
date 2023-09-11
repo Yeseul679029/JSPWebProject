@@ -42,9 +42,14 @@
 			file.delete();
 		}
    	 	
-    	  
-      	/* 게시물이 삭제되면 목록으로 이동한다. */
-       	JSFunction.alertLocation("삭제되었습니다.", "sub01List.jsp?tname="+tname, out); 
+    	 
+		if(tname.equals("imagesboard")){
+			/* 게시물이 삭제되면 목록으로 이동한다. */
+	       	JSFunction.alertLocation("삭제되었습니다.", "sub04List.jsp?tname="+tname, out); 
+		} else{
+	      	/* 게시물이 삭제되면 목록으로 이동한다. */
+	       	JSFunction.alertLocation("삭제되었습니다.", "sub01List.jsp?tname="+tname, out); 
+		}
       } 
       else {
       	/* 삭제에 실패하면 뒤로 이동한다. */

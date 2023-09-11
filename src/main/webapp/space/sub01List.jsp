@@ -9,9 +9,9 @@ String tname = "Noticeboard";
 
 //String tname = request.getParameter("tname");
 %>
-<%@ include file="ListCommon.jsp" %>
 
 <%@ include file="../include/global_head.jsp" %>
+<%@ include file="ListCommon.jsp" %>
 
 
  <body>
@@ -49,6 +49,7 @@ String tname = "Noticeboard";
 
 <!-- 검색폼 -->
     <form method="get">  
+    <input type="hidden" name="tname" value="<%= tname%>"/>
     <table class="table" width="90%">
     <tr>
         <td align="center">

@@ -40,9 +40,15 @@ public class MainCtrl extends HttpServlet{
 		param.put("tname", "freeboard");
 		List<BoardDTO> free = dao.selectListPage(param);
 		
+		
+		param.put("tname", "imagesboard");
+		param.put("end", 6);
+		List<BoardDTO> images = dao.selectListPage(param);
+		
 		//reqest 영역에 저장
 		req.setAttribute("notice", notice);
 		req.setAttribute("free", free);
+		req.setAttribute("images", images);
 		
 		//매핑된주소를 요청하면 jsp를 찾아서 포워드
 		req.getRequestDispatcher("../main/main.jsp").forward(req, resp);

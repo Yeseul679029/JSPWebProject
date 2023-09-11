@@ -76,3 +76,10 @@
 .join_box td{border-bottom:1px solid #d2d2d2; padding:5px;}
 .join_input{height:20px; border:1px solid #d2d2d2; padding:3px; width:200px;}
 .join_box span{color:#a59683}
+
+/*space*/
+.card a{text-decoration: none;}
+.img_board_list{width:100%;}
+.img_board_list li{position:relative;}
+.img_board_list li a{text-decoration: none;}
+.img_board_list li span{position:absolute; top:0px; right:0px; vertical-align:bottom;}

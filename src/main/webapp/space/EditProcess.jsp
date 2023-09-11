@@ -107,7 +107,7 @@ BoardDAO dao = new BoardDAO(application);
 //update 쿼리문을 실행하여 게시물을 수정한다. 
 int affected = 0;
 
-if(tname.equals("referenceboard")){
+if(tname.equals("referenceboard")||tname.equals("imagesboard")){
 	affected = dao.updateFileEdit(dto, tname);
 }
 else{
