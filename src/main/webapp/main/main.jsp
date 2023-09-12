@@ -237,7 +237,7 @@ function validateForm(form) {
 						<li class="text-truncate">
 							<dl>
 								<dt><a href="../space/sub01View.jsp?tname=imagesboard&num=${photo.num}"><img src="../Uploads/${photo.sfile }" /></a></dt>
-								<dd style="width: 85px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><a href="../space/sub01View.jsp?tname=noticeboard&num=${photo.num}">${photo.title}</a></dd>
+								<dd style="width: 85px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><a href="../space/sub01View.jsp?tname=imagesboard&num=${photo.num}">${photo.title}</a></dd>
 							</dl>
 						</li>
 					</c:forEach>

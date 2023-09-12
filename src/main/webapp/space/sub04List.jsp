@@ -79,9 +79,6 @@ else {
 	<a href="sub01View.jsp?tname=<%=tname %>&num=<%= dto.getNum() %>">
 		<img class="card-img-top" src="../Uploads/<%=dto.getSfile()%>" alt="Card image" style="width:100%; height: 200px;">
 		<div class="card-body">
-			<%-- <h6 class="card-title"><%= dto.getTitle() %></h4>
-			<p class="card-text"><%= dto.getName() %></p>
-			<p><%= dto.getPostdate() %> <span><%= dto.getVisitcount() %></span></p> --%>
 			<ul class="img_board_list " style="padding: 0;">
 				<li class="card-title text-truncate"><%= dto.getTitle() %></li>
 				<li  class="card-text"><%= dto.getName() %></li>

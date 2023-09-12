@@ -5,6 +5,9 @@
 <%@page import="model1.board.BoardDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+String tname = request.getParameter("tname"); 
+%>
 <!-- 수정 처리 전 로그인 되었는지 확인한다.  -->    
 <%@ include file="./IsLoggedIn.jsp"%>
 <%
@@ -12,7 +15,7 @@
 String num = request.getParameter("num"); 
 String title = request.getParameter("title");
 String content = request.getParameter("content");
-String tname = request.getParameter("tname");
+
 
 //파일업로드 외 처리
 String prevOfile = request.getParameter("prevOfile");

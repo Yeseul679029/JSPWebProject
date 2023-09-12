@@ -73,6 +73,9 @@ function deletePost() {
 
 	<!-- DTO에 저장된 내용을 getter를 통해 웹브라우저에 출력한다. -->  
     <table class="table table-bordered " width="90%">
+    	<colgroup>
+	        <col width="15%"/> <col width="35%"/><col width="15%"/> <col width="*"/>
+	    </colgroup>
         <tr>
             <td>번호</td>
             <td><%= dto.getNum() %></td>

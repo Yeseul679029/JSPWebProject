@@ -2,8 +2,8 @@
 <%@page import="model1.board.NoticeBoardDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="./IsLoggedIn.jsp"%>
 <%@ include file="./EditCommon.jsp" %>
+<%@ include file="./IsLoggedIn.jsp"%>
 <%@ include file="../include/global_head.jsp" %>
 <%
 

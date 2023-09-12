@@ -31,7 +31,7 @@
 						center: new kakao.maps.LatLng(37.569657, 126.984284), //지도의 중심좌표.
 						level: 3 //지도의 레벨(확대, 축소 정도)
 					};
-					https://place.map.kakao.com/1729819382
+					//https://place.map.kakao.com/1729819382
 					var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
 					
 					// 지도를 클릭한 위치에 표출할 마커입니다

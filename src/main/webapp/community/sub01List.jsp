@@ -89,7 +89,7 @@ String tname = request.getParameter("tname");
                 	+ loop.index)}
             </td>
             <td class="text-truncate"  align="left">  <!-- 제목(링크) -->
-                <a href="../community/sub01view.do?num=${ row.num }">${ row.title }</a> 
+                <a href="../community/view.do?tname=${map.tname }&num=${ row.num }">${ row.title }</a> 
             </td> 
             <td>${ row.name }</td>  <!-- 작성자 -->
             <td>${ row.visitcount }</td>  <!-- 조회수 -->
@@ -98,7 +98,7 @@ String tname = request.getParameter("tname");
             <!-- 첨부한 파일이 있는 경우에만 다운로드 링크를 출력한다. 
             해당 링크의 파라미터는 원본파일명, 저장된파일명, 일련번호 3개로 
             구성된다. 특히 일련번호는 다운로드 횟수 증가에 사용된다.  -->
-            <c:if test="${ not empty row.ofile }">
+           	<c:if test="${ not empty row.ofile }">
                 <a href="../community/download.do?ofile=${ row.ofile }&sfile=${ row.sfile }&num=${ row.num }">[Down]</a>
             </c:if>
             </td>
@@ -109,13 +109,13 @@ String tname = request.getParameter("tname");
     </table>
 
     <!-- 하단 메뉴(바로가기, 글쓰기) -->
-    <table class="table table-bordered" width="90%">
+    <table class="table " width="90%">
         <tr align="center">
             <td>
                 ${ map.pagingImg }
             </td>
             <td width="100">
-            	<button type="button" onclick="location.href='../community/write.do';" 
+            	<button type="button" onclick="location.href='../community/write.do?tname=${map.tname}';" 
                 	class="btn btn-outline-dark btn-sm">글쓰기</button>
             </td>
         </tr>

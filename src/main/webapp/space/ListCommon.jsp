@@ -50,8 +50,16 @@ int totalCount = dao.selectCount(param);
 /* web.xml에 설정한 컨텍스트 초기화 파라미터를 읽어온다.
 초기화 파라미터는 String으로 저장되므로 산술연산을 위해 int형으로 
 변환해야한다. */
-int pageSize = 
-	Integer.parseInt(application.getInitParameter("POSTS_PER_PAGE"));
+
+int pageSize = 0;
+//사진게시판일때 한페이지 출력수 9개 
+if (tname.equals("imagesboard")){
+	pageSize = Integer.parseInt(application.getInitParameter("POSTS_PER_PAGE"))-1;
+}
+else{
+	pageSize = Integer.parseInt(application.getInitParameter("POSTS_PER_PAGE"));
+}
+
 int blockPage = 
 	Integer.parseInt(application.getInitParameter("PAGES_PER_BLOCK"));
 

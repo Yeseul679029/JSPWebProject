@@ -4,13 +4,14 @@
 <%@page import="utils.JSFunction"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+//일련번호를 폼값으로 받는다. 
+String num = request.getParameter("num");   
+String tname = request.getParameter("tname"); 
+%>
 <!-- 작성자 본인만 삭제할 수 있으므로 기본적인 로그인 체크는 해야한다. -->    
 <%@ include file="./IsLoggedIn.jsp"%>  
 <%
-  //일련번호를 폼값으로 받는다. 
-  String num = request.getParameter("num");   
-  String tname = request.getParameter("tname");   
-
   BoardDTO dto = new BoardDTO();             
   BoardDAO dao = new BoardDAO(application);
   //본인 확인을 위해 기존 게시물을 인출한다. 

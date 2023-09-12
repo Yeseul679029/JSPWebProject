@@ -203,7 +203,12 @@ public class BoardDAO extends JDBConnect {
                 dto.setId(rs.getString("id"));
                 dto.setVisitcount(rs.getString("visitcount"));
                 dto.setName(rs.getString("name")); 
-                if(tname.equals("referenceboard")||tname.equals("imagesboard")) {
+                dto.setTname(tname); 
+//                if(tname.equals("referenceboard")||tname.equals("imagesboard")) {
+//                	dto.setOfile(rs.getString("ofile")); 
+//                	dto.setSfile(rs.getString("sfile")); 
+//                }
+                if( rs.getString("ofile") !=null ) {
                 	dto.setOfile(rs.getString("ofile")); 
                 	dto.setSfile(rs.getString("sfile")); 
                 }
