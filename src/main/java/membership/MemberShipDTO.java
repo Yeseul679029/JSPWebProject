@@ -12,7 +12,14 @@ public class MemberShipDTO {
 	private String zipcode;
 	private String addr1;
 	private String addr2;
+	private int m_level;
 	
+	public int getM_level() {
+		return m_level;
+	}
+	public void setM_level(int m_level) {
+		this.m_level = m_level;
+	}
 	//게터 세터
 	public String getId() {
 		return id;
@@ -74,5 +81,6 @@ public class MemberShipDTO {
 	public void setAddr2(String addr2) {
 		this.addr2 = addr2;
 	}
+	
 	
 }

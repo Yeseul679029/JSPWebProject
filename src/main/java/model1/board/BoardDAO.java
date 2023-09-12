@@ -357,6 +357,10 @@ public class BoardDAO extends JDBConnect {
                 	dto.setOfile(rs.getString("ofile"));
                 	dto.setSfile(rs.getString("sfile"));
                 }
+                if(map.get("tname").equals("empboard") || map.get("tname").equals("guardboard")) {
+                	dto.setOfile(rs.getString("ofile")); 
+                	dto.setSfile(rs.getString("sfile")); 
+                }
                 
                 
                 

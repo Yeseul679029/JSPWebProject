@@ -6,8 +6,22 @@
 String tname = request.getParameter("tname");
 %>
 <%@ include file="../space/IsLoggedIn.jsp"%> 
-
 <%@ include file="../include/global_head.jsp" %>
+<%
+if (tname.equals("empboard")){
+	String userId = session.getAttribute("UserId").toString();
+	MemberShipDAO dao = new MemberShipDAO();
+	MemberShipDTO memberLevelDTO = dao.getMemberLevel(userId);
+	dao.close();
+	int userLevel = memberLevelDTO.getM_level();
+	System.out.println("userId="+ userId);
+	System.out.println("level="+ userLevel);
+	if( userLevel <= 1){
+		JSFunction.alertBack("직원만 사용가능합니다.", out);
+	}
+	return;
+}
+%>
 
 <script type="text/javascript">
 /* 글쓰기 페이지에서 제목과 내용이 입력되었는지 검증하는 JS코드 */
@@ -71,7 +85,7 @@ function validateForm(form) {
             </td>
         </tr>
     <!-- 첨부파일 테이블 -->
-    <c:if test="${tname eq dto.tname }">
+    <%if (tname.equals("empboard")){ %>
     	<script>
 			/* 폼값을 submit(전송)할때 빈값에 대한 검증을 위한 JS 함수
 			필수사항인 제목과 첨부파일에 대해서만 검증한다. */
@@ -82,7 +96,7 @@ function validateForm(form) {
 				}
 			}
 		</script>
-    </c:if>
+    <%} %>
         <tr>
 	        <td>첨부파일</td>
 	        <td colspan="3">   

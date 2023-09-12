@@ -1,3 +1,5 @@
+<%@page import="membership.MemberShipDTO"%>
+<%@page import="membership.MemberShipDAO"%>
 <%@ page import="utils.JSFunction"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -25,6 +27,19 @@ if (tname.equals("noticeboard")){
 	}
 	return;
 }
+/* if (tname.equals("empboard")){
+	String userId = session.getAttribute("UserId").toString();
+	MemberShipDAO dao = new MemberShipDAO();
+	MemberShipDTO memberLevelDTO = dao.getMemberLevel(userId);
+	dao.close();
+	int userLevel = memberLevelDTO.getM_level();
+	System.out.println("userId="+ userId);
+	System.out.println("level="+ userLevel);
+	if( userLevel <= 1){
+		JSFunction.alertBack("직원만 사용가능합니다.", out);
+	}
+	return;
+} */
 %>
 
 

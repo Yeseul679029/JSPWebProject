@@ -63,7 +63,7 @@ public class MemberShipDAO extends JDBConnect {
 		int result = 0;
 		String query = "INSERT INTO membership VALUES( "
 			    + " ? , ?, ?, ?, ? , "
-			    +" ?, ?, ?, ?, ? ) ";
+			    +" ?, ?, ?, ?, ? , 1) ";
 		
 		try {
 			psmt = con.prepareStatement(query);
@@ -176,6 +176,34 @@ public class MemberShipDAO extends JDBConnect {
 		return dto;
 	}
 	
+	/* 비밀번호 찾기 */
+	public MemberShipDTO getMemberLevel(String uid) {
+		
+		MemberShipDTO dto = new MemberShipDTO();
+		System.out.println("uid="+uid);
+		String query = "SELECT * FROM membership WHERE id=?";
+		
+		try {
+			//쿼리문 실행을 위한 prepared객체 생성
+			psmt = con.prepareStatement(query);
+			//인파라미터를 설정
+			psmt.setString(1, uid);
+			//쿼리문을 실행한 후 ResultSet객체를 통해 결과 반환
+			rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				//회원정보가 있다면 DTO객체에 저장한다.
+				dto.setId(rs.getString("id"));
+				dto.setName(rs.getString("name"));
+				dto.setM_level(rs.getInt("m_level"));
+			}
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return dto;
+	}
 	
 	
 	

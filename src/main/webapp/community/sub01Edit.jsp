@@ -6,8 +6,22 @@
 String tname = request.getParameter("tname");
 %>
 <%@ include file="../space/IsLoggedIn.jsp"%> 
-
 <%@ include file="../include/global_head.jsp" %>
+<%
+if (tname.equals("empboard")){
+	String userId = session.getAttribute("UserId").toString();
+	MemberShipDAO dao = new MemberShipDAO();
+	MemberShipDTO memberLevelDTO = dao.getMemberLevel(userId);
+	dao.close();
+	int userLevel = memberLevelDTO.getM_level();
+	System.out.println("userId="+ userId);
+	System.out.println("level="+ userLevel);
+	if( userLevel <= 1){
+		JSFunction.alertBack("직원만 사용가능합니다.", out);
+	}
+	return;
+}
+%>
 
 <script type="text/javascript">
 /* 글쓰기 페이지에서 제목과 내용이 입력되었는지 검증하는 JS코드 */
@@ -56,11 +70,11 @@ function validateForm(form) {
 
 <form name="writeFrm" method="post" action="../community/edit.do" enctype="multipart/form-data"
       onsubmit="return validateForm(this);">
-    <input type="hidd-en" name="tname" value="<%= tname %>" />
-    <input type="hidd-en" name="tname2" value="${dto.tname }" />
-    <input type="hid-den" name="num" value="${dto.num }" />
-    <input type="hidde-n" name="prevOfile" value="${dto.ofile }" />
-    <input type="hidde-n" name="prevSfile" value="${dto.sfile }" />
+    <input type="hidden" name="tname" value="<%= tname %>" />
+    <input type="hidden" name="tname2" value="${dto.tname }" />
+    <input type="hidden" name="num" value="${dto.num }" />
+    <input type="hidden" name="prevOfile" value="${dto.ofile }" />
+    <input type="hidden" name="prevSfile" value="${dto.sfile }" />
     <table class="table table-bordered" width="100%">
         <tr>
             <td>제목</td>
@@ -76,7 +90,7 @@ function validateForm(form) {
             </td>
         </tr>
     <!-- 첨부파일 테이블 -->
-    	<script>
+    <!-- 	<script>
 			/* 폼값을 submit(전송)할때 빈값에 대한 검증을 위한 JS 함수
 			필수사항인 제목과 첨부파일에 대해서만 검증한다. */
 			function validateForm(form) {
@@ -85,7 +99,7 @@ function validateForm(form) {
 					return false;
 				}
 			}
-		</script>
+		</script> -->
         <tr>
 	        <td>첨부파일</td>
 	        <td colspan="3">
