@@ -140,7 +140,7 @@ else {
         	</td>
         	<!-- 공지사항게시판일때  -->
         	<% if (tname.equals("noticeboard")){ 
-        			/* 로그인되어있고, 아이디가 test일때 글쓰기가 보인다. */
+        			/* 로그인되어있고, 관리자아이디로 접속했을때 버튼이 보임 */
         			if (session.getAttribute("UserId") !=null && session.getAttribute("UserId").equals("admin")) { 
         	%>
 	        		<td style="width: 11%">
@@ -148,9 +148,7 @@ else {
 		            	class="btn btn-outline-dark btn-sm">글쓰기</button>
 	            	</td>
 					<%}
-    		/* 자유게시판일때 글쓰기가 보인다. */
-        	}else{ %>
-        	<!-- }else if(tname.equals("freeboard")){ %> -->
+       		}else{ %>
 			<td style="width: 11%">
 	            <button type="button" onclick="location.href='sub01Write.jsp?tname=<%=tname %>';" 
 	            	class="btn btn-outline-dark btn-sm">글쓰기</button>

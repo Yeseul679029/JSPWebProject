@@ -6,7 +6,6 @@
 String tname = request.getParameter("tname");
 %>
 <%@ include file="./IsLoggedIn.jsp"%> 
-
 <%@ include file="../include/global_head.jsp" %>
 
 <script type="text/javascript">

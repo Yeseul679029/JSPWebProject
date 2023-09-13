@@ -19,7 +19,6 @@ if (tname.equals("empboard")){
 	if( userLevel <= 1){
 		JSFunction.alertBack("직원만 사용가능합니다.", out);
 	}
-	return;
 }
 %>
 

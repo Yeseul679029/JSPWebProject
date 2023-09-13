@@ -5,9 +5,7 @@
 <%@ include file="./EditCommon.jsp" %>
 <%@ include file="./IsLoggedIn.jsp"%>
 <%@ include file="../include/global_head.jsp" %>
-<%
 
-%>
 <script type="text/javascript">
 function validateForm(form) {  
     if (form.title.value == "") {
@@ -62,8 +60,7 @@ function validateForm(form) {
 <!-- 게시판 들어가는 부분start -->
 
 <!-- 수정페이지는 일반적으로 쓰기페이지를 복사해서 제작하게 되므로 
-action속성값을 반드시 수정해야 한다. 만약 수정하지 않으면 게시물이 
-추가되는 헤프닝이 생기게된다.  -->
+action속성값을 반드시 수정해야 한다.  -->
 <form name="writeFrm" method="post" action="EditProcess.jsp"  enctype="multipart/form-data"
       onsubmit="return validateForm(this);">
 
@@ -89,16 +86,6 @@ action속성값을 반드시 수정해야 한다. 만약 수정하지 않으면 
         </tr>
     <!-- 첨부파일 테이블 -->
     <% if(tname.equals("referenceboard")||tname.equals("imagesboard")){ %>
-    	<script>
-			/* 폼값을 submit(전송)할때 빈값에 대한 검증을 위한 JS 함수
-			필수사항인 제목과 첨부파일에 대해서만 검증한다. */
-			/* function validateForm(form) {
-				if (form.ofile.value == ""){
-					alert("첨부파일은 필수 입력입니다.");
-					return false;
-				}
-			} */
-		</script>
         <tr>
 	        <td>첨부파일</td>
 	        <td colspan="3">           

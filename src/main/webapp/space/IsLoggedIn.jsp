@@ -21,13 +21,13 @@ if (session.getAttribute("UserId") == null) {
 }
 
 if (tname.equals("noticeboard")){
-	if (session.getAttribute("UserId") != "admin"){
-		JSFunction.alertLocation("관리자만 작성할수있습니다.",
-                "../member/login.jsp", out);
+	if (!session.getAttribute("UserId").equals("admin")){
+		JSFunction.alertBack("관리자만 작성할수있습니다.", out);
 	}
-	return;
 }
-/* if (tname.equals("empboard")){
+ 
+/* 
+if (tname.equals("empboard")){
 	String userId = session.getAttribute("UserId").toString();
 	MemberShipDAO dao = new MemberShipDAO();
 	MemberShipDTO memberLevelDTO = dao.getMemberLevel(userId);
@@ -41,5 +41,4 @@ if (tname.equals("noticeboard")){
 	return;
 } */
 %>
-
 

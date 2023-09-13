@@ -89,11 +89,7 @@ function validateForm(form) {
 					</p>
 					</form>
 					
-					<!-- 로그인오류 -->
-					<%-- <span style="color: red; font-size: 1.2em; display: inline-block; padding-top: 20px;"> 
-				        <%= request.getAttribute("LoginErrMsg") == null ?
-				                "" : request.getAttribute("LoginErrMsg") %>
-				    </span> --%>
+					
 <%
 } else {
 %>					 
@@ -241,10 +237,9 @@ function validateForm(form) {
 							</dl>
 						</li>
 					</c:forEach>
-					
 				</ul>
 			</div>
-		</div>
+		</div> 
 		<%@ include file="../include/quick.jsp"%>
 	</div>
 
