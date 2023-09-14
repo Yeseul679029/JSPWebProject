@@ -80,11 +80,6 @@ String tname = "Noticeboard";
             <th>작성자</th>
             <th>조회수</th>
             <th>작성일</th>
-<!--        <th width="10%">번호</th>
-            <th width="50%">제목</th>
-            <th width="15%">작성자</th>
-            <th width="10%">조회수</th>
-            <th width="15%">작성일</th> -->
         </tr>
 <%
 //컬렉션에 입력된 데이터가 없는지 확인한다. 
